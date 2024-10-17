@@ -78,7 +78,7 @@ ul {
 
 li {
   margin-bottom: 20px;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
 }
 
 .logo{
@@ -158,12 +158,10 @@ li {
   text-align: right;
 }
 
-
-
 .tooltip {
   position: absolute;
-  background: rgba(255, 255, 255, 0.8); 
-  color: #000000;
+  background: rgba(80, 80, 80, 0.8); 
+  color: #ffffff;
   padding: 15px;
   border-radius: 0px;
   z-index: 10;
@@ -185,6 +183,43 @@ footer {
   position: relative;
   width: 100%;
   margin-top: 50px;
+}
+
+
+.weather input[type="text"] {
+  width: 80%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+}
+
+.weather .wcard {
+  background-color: white;
+  padding: 20px;
+  margin: 10px 10px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 28px rgba(0, 0, 0, 0.3); /* shadow */
+  transition: transform 0.2s ease-in-out; /* Hover effect */
+}
+
+.weather .wcard:hover {
+  transform: scale(1.05); /* Subtle zoom effect on hover */
+  cursor: pointer;
+}
+
+.weather .wcard p {
+  font-size: 1rem;
+  color: #555;
+  margin: 5px 0;
+}
+
+.weather .wcard img {
+  margin-top: 10px;
+  width: 50px;
+  height: 50px;
 }
 
 
@@ -251,6 +286,8 @@ footer p{
 
 .navbar-toggler:focus, .navbar-toggler-icon:focus{
   outline: none;
+  border: none;
+  box-shadow:none;
 }
 
 .navbar-toggler-icon {
@@ -308,7 +345,7 @@ footer p{
   }
 
   .navbar-nav .nav-item {
-    margin: 10px 0;
+    margin: 0px 0;
   }
 
   .navbar-collapse {
@@ -334,25 +371,34 @@ footer p{
 }
 
 .tab-dropdown {
-  display: flex; /* Hide dropdown on larger screens */
-}
-
-/* Styles for the dropdown */
-.tab-dropdown {
-  display: block;
-  margin: 20px auto;
-  width: 90%; /* Full width with some padding */
-}
-
-/* Style for the select element */
-.tab-dropdown select {
+  display: flex;
+  justify-content: center;
   width: 100%;
   padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #f1f1f1;
+}
+
+.tab-dropdown select {
+  width: 100%;
+  padding: 12px;
+  font-size: 18px;
+  color: #333;
+  background-color: #f9f9f9;
+  border: 2px solid #ddd;
+  border-radius: 10px; /* More rounded corners for modern feel */
+  appearance: none; /* Hide default arrow */
+  -webkit-appearance: none; /* For Safari */
+  background-image: url("data:image/svg+xml;charset=UTF8,%3Csvg%20viewBox%3D%270%200%20100%20100%27%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%3E%3Cpath%20d%3D%27M10%2030%2050%2070%2090%2030%27%20stroke%3D%27%23333%27%20stroke-width%3D%2710%27%20fill%3D%27none%27%20stroke-linecap%3D%27round%27/%3E%3C/svg%3E");
+  background-position: right 10px center;
+  background-repeat: no-repeat;
+  background-size: 12px;
   cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+/* Styling for when the select box is focused */
+.tab-dropdown select:focus {
+  border-color: #888;
+  outline: none;
 }
 
 /* Style for active tab */
@@ -360,5 +406,6 @@ footer p{
   background-color: #007bff; /* Keep this for desktop */
   color: white;
 }
+
 }
 

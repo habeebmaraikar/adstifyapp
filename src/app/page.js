@@ -29,7 +29,7 @@ export default function Home() {
 
       <div className="row justify-content-center align-self-center">
 
-        <div className="col-md-6 col-lg-4">
+        <div className="col-md-6 col-lg-4 mtop">
                 <div className="card">
                     <div className="card-content">
                        <img src="/images/logo.png" className="img-fluid" width="auto" height="auto" alt="Adstify News"/>
@@ -39,13 +39,13 @@ export default function Home() {
                           Stay updated with the latest breaking news, covering a wide range of topics from politics and business to science and technology. Adstify brings you real-time updates on global and local events.                        
                         </p>
                         <div className={`${styles.ctas} ${styles.mtop}`}>
-                            <Link href="/news" className={styles.primary}>Go to News</Link>
+                            <Link href="/news" className={styles.primary}>Latest News</Link>
                         </div>
                     </div>
                 </div>
         </div>
 
-        <div className="col-md-6 col-lg-4">
+        <div className="col-md-6 col-lg-4 mtop">
                 <div className="card">
                     <div className="card-content">
                         <img src="/images/logo.png" className="img-fluid" width="auto" height="auto" alt="Adstify Top Stories"/>
@@ -54,13 +54,13 @@ export default function Home() {
                           Explore the most trending and impactful stories of the day with Adstify Top Stories. Featuring top headlines and in-depth reporting, this section highlights the biggest news shaping the world today. 
                         </p>
                         <div className={`${styles.ctas} ${styles.mtop}`}>
-                            <Link href="/topstories" className={styles.primary}>Go to Top Stories</Link>
+                            <Link href="/topstories" className={styles.primary}>See Top Stories</Link>
                         </div>
                     </div>
                 </div>
         </div>
 
-        <div className="col-md-6 col-lg-4">
+        <div className="col-md-6 col-lg-4 mtop">
                 <div className="card">
                     <div className="card-content">
                         <img src="/images/logo.png" className="img-fluid" width="auto" height="auto" alt="Adstify Top Stories"/>
@@ -69,7 +69,7 @@ export default function Home() {
                             Stay updated with real-time weather information tailored to your location. Whether you're planning a trip, heading out for a jog, Adstify Weather is here to provide you with the latest forecasts.                        
                         </p>
                         <div className={`${styles.ctas} ${styles.mtop}`}>
-                            <Link href="/weather" className={styles.primary}>Go to Weather</Link>
+                            <Link href="/weather" className={styles.primary}>Check Weather</Link>
                         </div>
                     </div>
                 </div>
@@ -85,7 +85,7 @@ export default function Home() {
                             The Adstify Random User feature provides users with random profiles generated from publicly available data. This tool is ideal for testing, data visualization, or demonstration purposes where you need mock users to simulate real-world scenarios.                        
                         </p>
                         <div className={`${styles.ctas} ${styles.mtop}`}>
-                            <Link href="/weather" className={styles.primary}>Go to Weather</Link>
+                            <Link href="/randomuser" className={styles.primary}>View Random User</Link>
                         </div>
                     </div>
                 </div>

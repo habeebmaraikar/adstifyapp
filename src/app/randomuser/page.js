@@ -1,7 +1,7 @@
 "use client"; // Add this to use hooks
 
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useLayoutEffect } from 'react';
 
 export default function RandomUser() {
   const [RandomUser, setRandomUser] = useState([]);
@@ -17,9 +17,51 @@ export default function RandomUser() {
       }
     };
 
-      fetchRandomUser();
+    // Fetch users initially
+    fetchRandomUser();
 
-  }, [RandomUser]);
+    // Set interval to fetch users every 2 minutes (120000 ms)
+    const intervalId = setInterval(fetchRandomUser, 60000); //1 minute
+
+    // Cleanup the interval when the component unmounts
+    return () => clearInterval(intervalId);
+
+  }, []);
+
+
+    // Scroll animation effect
+    useLayoutEffect(() => {
+      const elements = document.querySelectorAll(".randomusers");
+      const windowHeight = window.innerHeight;
+      const elementVisible = 100;
+  
+      const revealOnScroll = () => {
+        elements.forEach((element) => {
+          const elementTop = element.getBoundingClientRect().top;
+          
+          if (elementTop < windowHeight - elementVisible) {
+            element.classList.add('visible');
+          } else {
+            element.classList.remove('visible');
+          }
+        });
+    };
+  
+      if(elements.length>0){
+        // Trigger revealOnScroll on load
+        //revealOnScroll();
+        setTimeout(revealOnScroll, 0);
+  
+        // Add scroll event listener
+        window.addEventListener("scroll", revealOnScroll);
+      }
+  
+      // Cleanup event listener on component unmount
+      return () => {
+        window.removeEventListener("scroll", revealOnScroll);
+      };
+  
+    }, [RandomUser]); // Runs once when the component mounts
 
  
   return (
@@ -36,8 +78,8 @@ export default function RandomUser() {
               {/* Check if randdom users are not yet available and show Loading... */}
               {RandomUser.length === 0 && <p className="text-center">Loading...</p>}
 
-                {RandomUser.length > 0  && RandomUser.map((user) => (
-                    <div className="col-md-6 col-lg-4 mtop" key={user.email}>
+                {RandomUser.length > 0  && RandomUser.map((user, index) => (
+                    <div className="col-md-6 col-lg-4 randomusers" key={index}>
                         <div className="card">
                               <div className="card-content">
                                     {user.picture && user.picture.large ? (
