@@ -3,7 +3,7 @@ const nextConfig = {
     reactStrictMode: true,  // Enables React's Strict Mode for highlighting potential problems
     swcMinify: true,  // Uses SWC for faster builds and smaller output sizes
     images: {
-      domains: ['static01.nyt.com', 'example.com'],  // Allow specific image domains
+      domains: ['static01.nyt.com', 'cdn.worldweatheronline.com', 'assets.weatherstack.com'],  // Allow specific image domains
       remotePatterns: [
         {
           protocol: 'https',
@@ -12,8 +12,13 @@ const nextConfig = {
         },
         {
           protocol: 'https',
-          hostname: 'another-allowed-host.com',
-          pathname: '/media/**',
+          hostname: 'cdn.worldweatheronline.com',
+          pathname: '/images/**',
+        },
+        {
+          protocol: 'https',
+          hostname: 'assets.weatherstack.com',
+          pathname: '/images/**',
         },
         {
             protocol: 'https',
@@ -28,4 +33,5 @@ const nextConfig = {
   };
   
   export default nextConfig;
+  
   

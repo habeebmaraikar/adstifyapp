@@ -1,5 +1,6 @@
 "use client"; // Add this to use hooks
 
+import Image from "next/image";
 import axios from 'axios';
 import { useEffect, useState, useLayoutEffect } from 'react';
 
@@ -18,7 +19,9 @@ export default function RandomUser() {
     };
 
     // Fetch users initially
-    fetchRandomUser();
+    if (typeof window !== "undefined") {  // Ensures this runs only on the client side
+      fetchRandomUser();
+    }
 
     // Set interval to fetch users every 2 minutes (120000 ms)
     const intervalId = setInterval(fetchRandomUser, 60000); //1 minute
@@ -83,10 +86,25 @@ export default function RandomUser() {
                         <div className="card">
                               <div className="card-content">
                                     {user.picture && user.picture.large ? (
-                                      <img src={user.picture.large} className="img-fluid" width="100%" height="auto" alt={user.name.first}/>
+                                      <Image
+                                      className="img-fluid image"
+                                      src={user.picture.large}
+                                      alt={user.name.first}
+                                      width={200}
+                                      height={61}
+                                      priority
+                                    />
                                     ) : (
-                                      <img src={user.picture.medium} className="img-fluid" width="100%" height="auto" alt={user.name.first}/>
+                                      <Image
+                                      className="img-fluid image"
+                                      src={user.picture.medium}
+                                      alt={user.name.first}
+                                      width={200}
+                                      height={61}
+                                      priority
+                                    />
                                     )}
+
                                        <h2>
                                        {user.name.title} {user.name.first} {user.name.last}
                                       </h2>

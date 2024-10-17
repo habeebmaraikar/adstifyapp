@@ -1,5 +1,6 @@
 "use client" ; // Add this to use hooks
 
+import Image from "next/image";
 import { useEffect, useState, useLayoutEffect } from 'react';
 import axios from 'axios';
 
@@ -54,11 +55,12 @@ export default function Topstories() {
       }
     };
   
-    // Fetch news when activeTab changes
+    // Fetch topstories when activeTab changes
     useEffect(() => {
-      fetchTopStories(activeTab);
+      if (typeof window !== "undefined") {  // Ensures this runs only on the client side
+        fetchTopStories(activeTab);
+      }
     }, [activeTab]);
-
 
   // Scroll animation effect
   useLayoutEffect(() => {
@@ -140,10 +142,24 @@ export default function Topstories() {
                         <div className="card">
                               <div className="card-content">
                                  <a href={article.url} target="_blank" rel="noopener noreferrer"> 
-                                    {article.multimedia && article.multimedia[1] ? (
-                                      <img src={article.multimedia[1]['url']} className="img-fluid" width="100%" height="auto" alt={article.title}/>
+                                 {article.multimedia && article.multimedia[1] ? (
+                                      <Image
+                                      className="img-fluid image"
+                                      src={article.multimedia[1]['url']}
+                                      alt={article.title}
+                                      width={200}
+                                      height={61}
+                                      priority
+                                    />
                                     ) : (
-                                      <img src="https://static01.nyt.com/images/2024/10/16/crosswords/17wordle-review-art-1216/17wordle-review-art-1216-mediumThreeByTwo210.jpg" className="img-fluid" width="100%" height="auto" alt={article.title}/>
+                                      <Image
+                                      className="img-fluid image"
+                                      src="https://static01.nyt.com/images/2024/10/16/crosswords/17wordle-review-art-1216/17wordle-review-art-1216-mediumThreeByTwo210.jpg"
+                                      alt={article.title}
+                                      width={200}
+                                      height={61}
+                                      priority
+                                    />
                                     )}
                                        <h2 
                                         className="title"
@@ -155,7 +171,7 @@ export default function Topstories() {
                                   </a>
 
                                    {/* Tooltip that will show based on state */}
-                                   {tooltip.visible && tooltip.articleUrl === article.url && (
+                                   {tooltip.visible && tooltip.articleUrl === article.url && tooltip.content &&(
                                       <div className="tooltip">{tooltip.content}</div>
                                     )}
                                     

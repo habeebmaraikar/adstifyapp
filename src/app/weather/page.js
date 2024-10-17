@@ -1,5 +1,6 @@
 "use client"; // Add this to use hooks
 
+import Image from "next/image";
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
@@ -24,7 +25,7 @@ export default function Weather() {
   const [weather, setWeather] = useState({});
   const [location, setLocation] = useState('Singapore');
   const [error, setError] = useState(false);
-  const debouncedLocation = useDebounce(location, 1000); // Delay API call by 1 second
+  const debouncedLocation = useDebounce(location, 800); // Delay API call by 1 second
 
   useEffect(() => {
     const fetchWeather = async (location) => {
@@ -39,9 +40,10 @@ export default function Weather() {
       } 
     };
 
-    if (debouncedLocation) {
+    if (debouncedLocation && typeof window !== "undefined") {  // Ensures this runs only on the client side
       fetchWeather(debouncedLocation);
     }
+
   }, [debouncedLocation]);
 
   return (
@@ -81,11 +83,11 @@ export default function Weather() {
                 <p>Pressure: {weather.current?.pressure || ''}</p>
                 <p>Weather Descriptions: {weather.current?.weather_descriptions?.[0] || ''}</p>
                 <p>
-                  <img
-                    src={weather.current?.weather_icons?.[0] || ''}
+                  <Image
+                    src={weather.current?.weather_icons?.[0] || '/images/logo.png'}
                     alt="Weather icon"
-                    width="auto"
-                    height="auto"
+                    width={150}
+                    height={150}
                   />
                 </p>
               </div>
@@ -103,3 +105,5 @@ export default function Weather() {
     </div>
   );
 }
+
+

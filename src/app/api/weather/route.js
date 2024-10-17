@@ -6,8 +6,10 @@ import axios from 'axios';
 
 export async function GET(req) {
   try {
-    const url = new URL(req.url);
-    const location = url.searchParams.get('location') || 'Singapore'; // Default to 'Singapore' if no section is provided
+    //const url = new URL(req.url);
+    //const location = url.searchParams.get('location') || 'Singapore'; // Default to 'Singapore' if no section is provided
+    const { searchParams } = new URL(req.url); 
+    const location = searchParams.get('location') || 'Singapore';
 
     /*const response1 = await axios.get(
           `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${process.env.WEATHER_API_KEY}&units=metric`

@@ -1,6 +1,6 @@
-import Image from "next/image";
 import styles from "./page.module.css";
 import Link from 'next/link';
+import Image from "next/image";
 
 //import logo from './images/logo.png'; // Adjust the path to your images folder
 
@@ -32,7 +32,14 @@ export default function Home() {
         <div className="col-md-6 col-lg-4 mtop">
                 <div className="card">
                     <div className="card-content">
-                       <img src="/images/logo.png" className="img-fluid" width="auto" height="auto" alt="Adstify News"/>
+                       <Image
+                        className='img-fluid'
+                        src="/images/logo.png"
+                        alt="Adstify News"
+                        width={180}
+                        height={61}
+                        priority
+                      />
 
                         <h2>Adstify News</h2>
                         <p>
@@ -48,8 +55,15 @@ export default function Home() {
         <div className="col-md-6 col-lg-4 mtop">
                 <div className="card">
                     <div className="card-content">
-                        <img src="/images/logo.png" className="img-fluid" width="auto" height="auto" alt="Adstify Top Stories"/>
-                        <h2>Adstify Top Stories</h2>
+                    <Image
+                        className='img-fluid'
+                        src="/images/logo.png"
+                        alt="Adstify News"
+                        width={180}
+                        height={61}
+                        priority
+                      />                        
+                      <h2>Adstify Top Stories</h2>
                         <p>
                           Explore the most trending and impactful stories of the day with Adstify Top Stories. Featuring top headlines and in-depth reporting, this section highlights the biggest news shaping the world today. 
                         </p>
@@ -63,8 +77,15 @@ export default function Home() {
         <div className="col-md-6 col-lg-4 mtop">
                 <div className="card">
                     <div className="card-content">
-                        <img src="/images/logo.png" className="img-fluid" width="auto" height="auto" alt="Adstify Top Stories"/>
-                        <h2>Adstify Weather</h2>
+                      <Image
+                        className='img-fluid'
+                        src="/images/logo.png"
+                        alt="Adstify News"
+                        width={180}
+                        height={61}
+                        priority
+                      />                        
+                      <h2>Adstify Weather</h2>
                         <p>
                             Stay updated with real-time weather information tailored to your location. Whether you're planning a trip, heading out for a jog, Adstify Weather is here to provide you with the latest forecasts.                        
                         </p>
@@ -79,8 +100,15 @@ export default function Home() {
         <div className="col-md-6 col-lg-4 mtop">
                 <div className="card">
                     <div className="card-content">
-                        <img src="/images/logo.png" className="img-fluid" width="auto" height="auto" alt="Adstify Top Stories"/>
-                        <h2>Adstify Random User</h2>
+                      <Image
+                        className='img-fluid'
+                        src="/images/logo.png"
+                        alt="Adstify News"
+                        width={180}
+                        height={61}
+                        priority
+                      />                        
+                      <h2>Adstify Random User</h2>
                         <p>
                             The Adstify Random User feature provides users with random profiles generated from publicly available data. This tool is ideal for testing, data visualization, or demonstration purposes where you need mock users to simulate real-world scenarios.                        
                         </p>

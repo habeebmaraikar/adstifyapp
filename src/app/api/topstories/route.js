@@ -9,8 +9,10 @@ import axios from 'axios';
 
 export async function GET(req) {
   try {
-    const url = new URL(req.url);
-    const section = url.searchParams.get('section') || 'world'; // Default to 'home' if no section is provided
+    //const url = new URL(req.url);
+    //const section = url.searchParams.get('section') || 'world'; // Default to 'home' if no section is provided
+    const { searchParams } = new URL(req.url); 
+    const section = searchParams.get('section') || 'world';
 
     const response = await axios.get(
       `https://api.nytimes.com/svc/topstories/v2/${section}.json?api-key=${process.env.NYTIMES_API_KEY}`

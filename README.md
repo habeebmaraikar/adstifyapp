@@ -56,7 +56,9 @@ npm install pm2 -g
 
 b) Run the app with PM2:
 
+```
 pm2 start npm --name "adstifyapp" -- start
+```
 
 c) Set up a Reverse Proxy with Nginx:
 If you're deploying to a server, it’s recommended to set up Nginx as a reverse proxy to manage incoming requests to our Next.js app. First, install Nginx:
