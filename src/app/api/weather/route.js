@@ -16,7 +16,7 @@ export async function GET(req) {
     );*/
 
     const response = await axios.get(
-      ` https://api.weatherstack.com/current?access_key=${process.env.WEATHER_API_KEY}&query=${location}`
+      `https://api.weatherstack.com/current?access_key=${process.env.WEATHER_API_KEY}&query=${location}`
     );
 
     return new Response(JSON.stringify(response.data), {
