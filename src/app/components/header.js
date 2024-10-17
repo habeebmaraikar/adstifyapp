@@ -48,6 +48,11 @@ export default function Header() {
                 </Link>
               </li>
               <li className="nav-item">
+                <Link className={`nav-link ${pathname === '/randomuser' ? 'active' : ''}`} href="/randomuser">
+                  Random User
+                </Link>
+              </li>
+              <li className="nav-item">
                 <Link className={`nav-link ${pathname === '/weather' ? 'active' : ''}`} href="/weather">
                   Weather
                 </Link>

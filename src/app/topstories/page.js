@@ -1,6 +1,5 @@
 "use client" ; // Add this to use hooks
 
-import Image from "next/image";
 import { useEffect, useState, useLayoutEffect } from 'react';
 import axios from 'axios';
 

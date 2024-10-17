@@ -54,7 +54,7 @@ export default function Home() {
                           Explore the most trending and impactful stories of the day with Adstify Top Stories. Featuring top headlines and in-depth reporting, this section highlights the biggest news shaping the world today. 
                         </p>
                         <div className={`${styles.ctas} ${styles.mtop}`}>
-                            <Link href="/topstories" className={styles.secondary}>Go to Top Stories</Link>
+                            <Link href="/topstories" className={styles.primary}>Go to Top Stories</Link>
                         </div>
                     </div>
                 </div>
@@ -67,6 +67,22 @@ export default function Home() {
                         <h2>Adstify Weather</h2>
                         <p>
                             Stay updated with real-time weather information tailored to your location. Whether you're planning a trip, heading out for a jog, Adstify Weather is here to provide you with the latest forecasts.                        
+                        </p>
+                        <div className={`${styles.ctas} ${styles.mtop}`}>
+                            <Link href="/weather" className={styles.primary}>Go to Weather</Link>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+
+        <div className="col-md-6 col-lg-4 mtop">
+                <div className="card">
+                    <div className="card-content">
+                        <img src="/images/logo.png" className="img-fluid" width="auto" height="auto" alt="Adstify Top Stories"/>
+                        <h2>Adstify Random User</h2>
+                        <p>
+                            The Adstify Random User feature provides users with random profiles generated from publicly available data. This tool is ideal for testing, data visualization, or demonstration purposes where you need mock users to simulate real-world scenarios.                        
                         </p>
                         <div className={`${styles.ctas} ${styles.mtop}`}>
                             <Link href="/weather" className={styles.primary}>Go to Weather</Link>

@@ -1,4 +1,3 @@
-// api/news.js
 import axios from 'axios';
 
 //top stories

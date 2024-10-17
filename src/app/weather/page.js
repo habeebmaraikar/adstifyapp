@@ -1,6 +1,5 @@
 "use client"; // Add this to use hooks
 
-import styles from "./page.module.css";
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
