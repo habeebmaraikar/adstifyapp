@@ -8,6 +8,7 @@ import axios from 'axios';
 export default function Topstories() {
   const [articles, setArticles] = useState([]);
   const [activeTab, setActiveTab] = useState('world'); // Default tab
+  const [loading, setLoading] = useState(false); 
 
   //tooltip to show short description - abstract
   const [tooltip, setTooltip] = useState({ visible: false, content: '', articleUrl: '' });
@@ -46,12 +47,15 @@ export default function Topstories() {
     // Function to fetch news based on the selected tab (section)
     const fetchTopStories = async (section) => {
       try {
+        setLoading(true); // Set loading to true when fetching starts
         //const response1 = await axios.get( '/api/topstories');
         const response = await axios.get(`/api/topstories?section=${section}`);
         //console.log(response.data); 
         setArticles(response.data);
       } catch (error) {
         console.error('Error fetching topstories', error);
+      } finally {
+        setLoading(false); // Set loading to false when fetching is complete
       }
     };
   
@@ -134,10 +138,15 @@ export default function Topstories() {
             </div>
 
             <div className="row">
-              {/* Check if articles are not yet available and show Loading... */}
-              {articles.length === 0 && <p className="text-center">Loading...</p>}
 
-                {articles.length > 0  && articles.map((article) => (
+              {loading ? (
+                <p className="text-center">Loading...</p>  // Show loading message if loading is true
+              ) : (
+                articles.length === 0 ? (
+                  <p className="text-center">No stories available</p> // Show message if no articles
+                ) : (
+                  // Render Top stories if present
+                  articles.length > 0  && articles.map((article) => (
                     <div className="col-md-6 col-lg-4 news-card" key={article.url}>
                         <div className="card">
                               <div className="card-content">
@@ -180,7 +189,10 @@ export default function Topstories() {
                               </div>
                         </div>
                     </div>
-                ))}
+                ))
+                )
+              )}     
+               
             </div>
 
       </div>

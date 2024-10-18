@@ -7,6 +7,7 @@ import axios from 'axios';
 export default function News() {
   const [articles, setArticles] = useState([]);
   const [activeTab, setActiveTab] = useState('all'); // Default tab
+  const [loading, setLoading] = useState(false); 
 
   //tooltip to show short description - abstract
   const [tooltip, setTooltip] = useState({ visible: false, content: '', articleUrl: '' });
@@ -46,12 +47,15 @@ export default function News() {
     // Function to fetch news based on the selected tab (section)
     const fetchNews = async (section) => {
       try {
+        setLoading(true); // Set loading to true when fetching starts
         //const response1 = await axios.get( '/api/news');
         const response = await axios.get(`/api/news?section=${section}`);
         //console.log(response.data); 
         setArticles(response.data);
       } catch (error) {
         console.error('Error fetching news', error);
+      } finally {
+        setLoading(false); // Set loading to false when fetching is complete
       }
     };
   
@@ -136,54 +140,66 @@ export default function News() {
 
             <div className="row">
 
-                {/* Check if articles are not yet available and show Loading... */}
-                {articles.length === 0 && <p className="text-center">Loading...</p>}
+            {loading ? (
+              <p className="text-center">Loading...</p>  // Show loading message if loading is true
+            ) : (
+              articles.length === 0 ? (
+                <p className="text-center">No news available</p> // Show message if no articles
+              ) : (
+                // Render news if present
+                articles.length > 0  && articles.map((article) => (
+                  <div className="col-md-6 col-lg-4 news-card" key={article.url}>
+                      <div className="card">
+                            <div className="card-content">
+                               <a href={article.url} target="_blank" rel="noopener noreferrer content"> 
+                                  {article.multimedia && article.multimedia[1] ? (
+                                    <Image
+                                    className="img-fluid image"
+                                    src={article.multimedia[1]['url']}
+                                    alt={article.title}
+                                    width={200}
+                                    height={61}
+                                    priority
+                                  />
+                                  ) : (
+                                    <Image
+                                    className="img-fluid image"
+                                    src="https://static01.nyt.com/images/2024/10/16/crosswords/17wordle-review-art-1216/17wordle-review-art-1216-mediumThreeByTwo210.jpg"
+                                    alt={article.title}
+                                    width={200}
+                                    height={61}
+                                    priority
+                                  />
+                                  )}
 
-                {articles.length > 0  && articles.map((article) => (
-                    <div className="col-md-6 col-lg-4 news-card" key={article.url}>
-                        <div className="card">
-                              <div className="card-content">
-                                 <a href={article.url} target="_blank" rel="noopener noreferrer content"> 
-                                    {article.multimedia && article.multimedia[1] ? (
-                                      <Image
-                                      className="img-fluid image"
-                                      src={article.multimedia[1]['url']}
-                                      alt={article.title}
-                                      width={200}
-                                      height={61}
-                                      priority
-                                    />
-                                    ) : (
-                                      <Image
-                                      className="img-fluid image"
-                                      src="https://static01.nyt.com/images/2024/10/16/crosswords/17wordle-review-art-1216/17wordle-review-art-1216-mediumThreeByTwo210.jpg"
-                                      alt={article.title}
-                                      width={200}
-                                      height={61}
-                                      priority
-                                    />
-                                    )}
+                                    <h2 
+                                      className="title"
+                                      onMouseEnter={() => handleMouseEnter(article.abstract, article.url)}
+                                      onMouseLeave={handleMouseLeave}
+                                    >
+                                      {article.title.length > 70 ? article.title.substring(0, 75) + '...' : article.title}
+                                    </h2>
+                                </a>
 
-                                      <h2 
-                                        className="title"
-                                        onMouseEnter={() => handleMouseEnter(article.abstract, article.url)}
-                                        onMouseLeave={handleMouseLeave}
-                                      >
-                                        {article.title.length > 70 ? article.title.substring(0, 75) + '...' : article.title}
-                                      </h2>
-                                  </a>
+                                 {/* Tooltip that will show based on state */}
+                                 {tooltip.visible && tooltip.articleUrl === article.url &&  tooltip.content && (
+                                    <div className="tooltip">{tooltip.content}</div>
+                                  )}
 
-                                   {/* Tooltip that will show based on state */}
-                                   {tooltip.visible && tooltip.articleUrl === article.url &&  tooltip.content && (
-                                      <div className="tooltip">{tooltip.content}</div>
-                                    )}
- 
-                                  <p>{article.source ?  article.source : article.byline} - <span className="publishdate">{timeDifferenceInHours(article.published_date)}</span></p>
+                                <p>{article.source ?  article.source : 'Anonymous News'} - <span className="publishdate">{timeDifferenceInHours(article.published_date)}</span></p>
 
-                              </div>
-                        </div>
-                    </div>
-                ))}
+                            </div>
+                      </div>
+                  </div>
+                ))
+              )
+            )}
+
+
+       
+
+                
+
             </div>
 
       </div>

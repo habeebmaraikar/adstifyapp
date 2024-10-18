@@ -24,6 +24,7 @@ function useDebounce(value, delay) {
 export default function Weather() {
   const [weather, setWeather] = useState({});
   const [location, setLocation] = useState('Singapore');
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const debouncedLocation = useDebounce(location, 600); // Delay API call by 1 second
 
@@ -31,13 +32,16 @@ export default function Weather() {
     const fetchWeather = async (location) => {
       setError(false); // Reset error state
       try {
+        setLoading(true); // Set loading to true when the fetch starts
         const response = await axios.get(`/api/weather?location=${location}`);
         setWeather(response.data);
       } catch (err) {
         console.error('Error fetching weather:', err);
         setError(true);
         setWeather({}); // Reset weather data
-      } 
+      } finally {
+        setLoading(false); // Set loading to false when the fetch is complete
+      }
     };
 
     if (debouncedLocation && typeof window !== "undefined") {  // Ensures this runs only on the client side
@@ -63,44 +67,50 @@ export default function Weather() {
         </div>
 
         <div className="col-12">
-          {/* Display loading */}
-          {Object.keys(weather).length === 0 && <p className="text-left">Loading...</p>}
-
           {/* Display error message if location is invalid */}
-          {error && <p className="text-left text-danger">Location not found. Please enter a valid city or country.</p>}
-
+          {error && <p className="text-center text-danger">Location not found. Please enter a valid city or country.</p>}
         </div>
 
-          {/* Display weather data if available */}
-          {weather && !error && (
-            <div className="row mtop justify-content-center align-self-center">
-              <h2 className="text-center">{weather.request?.query || ''}</h2>
-
-              <div className="col-md-6 col-lg-3 mtop wcard">
-                <p>Temperature: {weather.current?.temperature || ''} °C</p>
-                <p>Humidity: {weather.current?.humidity || ''}</p>
-                <p>Cloudcover: {weather.current?.cloudcover || ''}</p>
-                <p>Pressure: {weather.current?.pressure || ''}</p>
-                <p>Weather Descriptions: {weather.current?.weather_descriptions?.[0] || ''}</p>
-                <p>
-                  <Image
-                    src={weather.current?.weather_icons?.[0] || '/images/logo.png'}
-                    alt="Weather icon"
-                    width={150}
-                    height={150}
-                  />
-                </p>
-              </div>
-
-              <div className="col-md-6 col-lg-3 mtop wcard">
-                <p>Wind Degree: {weather.current?.wind_degree || ''}</p>
-                <p>Wind Direction: {weather.current?.wind_dir || ''}</p>
-                <p>Wind Speed: {weather.current?.wind_speed || ''}</p>
-                <p>Latitude: {weather.location?.lat || ''}</p>
-                <p>Longitude: {weather.location?.lon || ''}</p>
-              </div>
-            </div>
+          {loading ? (
+            <p className="text-center">Loading...</p> // Show loading message when `loading` is true
+          ) : (
+            Object.keys(weather).length === 0 ? (
+              <p className="text-center">No weather data available</p> // Show this if no weather data is available
+            ) : (
+              // Show weather data if available
+              weather && !error && (
+                <div className="row mtop justify-content-center align-self-center">
+                  <h2 className="text-center">{weather.request?.query || ''}</h2>
+    
+                  <div className="col-md-6 col-lg-3 mtop wcard">
+                    <p><strong>Temperature:</strong> {weather.current?.temperature || ''} °C</p>
+                    <p><strong>Humidity:</strong> {weather.current?.humidity || ''}</p>
+                    <p><strong>Cloudcover:</strong> {weather.current?.cloudcover || ''}</p>
+                    <p><strong>Pressure:</strong> {weather.current?.pressure || ''}</p>
+                    <p><strong>Weather Descriptions:</strong> {weather.current?.weather_descriptions?.[0] || ''}</p>
+                    <p>
+                      <Image
+                        src={weather.current?.weather_icons?.[0] || '/images/logo.png'}
+                        alt="Weather icon"
+                        width={150}
+                        height={150}
+                      />
+                    </p>
+                  </div>
+    
+                  <div className="col-md-6 col-lg-3 mtop wcard">
+                    <p><strong>Wind Degree:</strong> {weather.current?.wind_degree || ''}</p>
+                    <p><strong>Wind Direction:</strong> {weather.current?.wind_dir || ''}</p>
+                    <p><strong>Wind Speed:</strong> {weather.current?.wind_speed || ''}</p>
+                    <p><strong>Latitude:</strong> {weather.location?.lat || ''}</p>
+                    <p><strong>Longitude:</strong> {weather.location?.lon || ''}</p>
+                    <p><strong>Observation Time:</strong> {weather.current?.observation_time || ''}</p>
+                  </div>
+                </div>
+              )
+            )
           )}
+          
         </div>
     </div>
   );

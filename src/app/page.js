@@ -6,8 +6,26 @@ import Image from "next/image";
 
 export default function Home() {
   return (
+    <>
+     
+     <div className="row bannerimage">
+        <div className="col-12">
+          <Image
+              className='img-fluid banner'
+              src="/images/banner.jpg?v=22"
+              alt="Adstify Banner"
+              width={1920}
+              height={786}
+              priority
+            />
+        </div>
+      </div>
+  
+    
     <div className={styles.page}>
       <main className={styles.main}>
+
+      
 
         <div className="row">
           <div className="col-12 text-center">
@@ -85,17 +103,16 @@ export default function Home() {
                         height={61}
                         priority
                       />                        
-                      <h2>Adstify Weather</h2>
+                      <h2>Adstify Random User</h2>
                         <p>
-                            Stay updated with real-time weather information tailored to your location. Whether you're planning a trip, heading out for a jog, Adstify Weather is here to provide you with the latest forecasts.                        
+                            The Adstify Random User feature provides users with random profiles generated from publicly available data. This tool is ideal for testing, data visualization, or demonstration purposes where you need mock users to simulate real-world scenarios.                        
                         </p>
                         <div className={`${styles.ctas} ${styles.mtop}`}>
-                            <Link href="/weather" className={styles.primary}>Check Weather</Link>
+                            <Link href="/randomuser" className={styles.primary}>View Random User</Link>
                         </div>
                     </div>
                 </div>
         </div>
-
 
         <div className="col-md-6 col-lg-6 mtop">
                 <div className="card">
@@ -108,12 +125,12 @@ export default function Home() {
                         height={61}
                         priority
                       />                        
-                      <h2>Adstify Random User</h2>
+                      <h2>Adstify Weather</h2>
                         <p>
-                            The Adstify Random User feature provides users with random profiles generated from publicly available data. This tool is ideal for testing, data visualization, or demonstration purposes where you need mock users to simulate real-world scenarios.                        
+                            Stay updated with real-time weather information tailored to your location. Whether you're planning a trip, heading out for a jog, Adstify Weather is here to provide you with the latest forecasts.                        
                         </p>
                         <div className={`${styles.ctas} ${styles.mtop}`}>
-                            <Link href="/randomuser" className={styles.primary}>View Random User</Link>
+                            <Link href="/weather" className={styles.primary}>Check Weather</Link>
                         </div>
                     </div>
                 </div>
@@ -123,8 +140,9 @@ export default function Home() {
 
       
       </main>
-
     </div>
+
+  </>
   );
 }
 

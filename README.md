@@ -107,6 +107,7 @@ Once everything is set up, you can access the app via the server's IP or domain 
 - `.env.local` file for development server
 - `.env.production` file for production server
 
+
 ## API's Used
 ### Times Newswire API
 - https://api.nytimes.com/svc/news/v3/content/all/${section}.json?api-key=${NYTIMES_API_KEY}
@@ -119,4 +120,10 @@ Once everything is set up, you can access the app via the server's IP or domain 
 
 ### Random User API
 - https://randomuser.me/api/?results=50
+
+
+## Live link 
+
+Access the app [https://adstifyapp.vercel.app/](Website Live Link) with your browser to see the result.
+
 
