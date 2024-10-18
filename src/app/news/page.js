@@ -194,12 +194,6 @@ export default function News() {
                 ))
               )
             )}
-
-
-       
-
-                
-
             </div>
 
       </div>

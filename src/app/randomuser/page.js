@@ -11,7 +11,7 @@ export default function RandomUser() {
     const fetchRandomUser = async () => {
       try {
         const response = await axios.get(`/api/randomuser`);
-        console.log(response.data, "rdata");
+        //console.log(response.data, "rdata");
         setRandomUser(response.data);
       } catch (error) {
         console.error('Error fetching weather', error);

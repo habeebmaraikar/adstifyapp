@@ -9,12 +9,12 @@ import axios from 'axios';
 
 
 export async function GET(req) {
-  try {
     //const url = new URL(req.url);
     //const section = url.searchParams.get('section') || 'all'; // Default to 'all' if no section is provided
     const { searchParams } = new URL(req.url); 
     const section = searchParams.get('section') || 'all';
 
+  try {
     const response = await axios.get(
       `https://api.nytimes.com/svc/news/v3/content/all/${section}.json?api-key=${process.env.NYTIMES_API_KEY}`
     );

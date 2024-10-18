@@ -1,10 +1,50 @@
+"use client" ; // Add this to use hooks
+
 import styles from "./page.module.css";
 import Link from 'next/link';
 import Image from "next/image";
+import {useLayoutEffect } from 'react';
 
 //import logo from './images/logo.png'; // Adjust the path to your images folder
 
 export default function Home() {
+
+  // Scroll animation effect
+  useLayoutEffect(() => {
+    const elements = document.querySelectorAll(".app-card");
+    const windowHeight = window.innerHeight;
+    const elementVisible = 100;
+
+    const revealOnScroll = () => {
+      elements.forEach((element) => {
+        const elementTop = element.getBoundingClientRect().top;
+        
+        if (elementTop < windowHeight - elementVisible) {
+          element.classList.add('visible');
+        } else {
+          element.classList.remove('visible');
+        }
+      });
+  };
+
+
+    if(elements.length>0){
+      // Trigger revealOnScroll on load
+      //revealOnScroll();
+      setTimeout(revealOnScroll, 0);
+
+      // Add scroll event listener
+      window.addEventListener("scroll", revealOnScroll);
+    }
+
+    // Cleanup event listener on component unmount
+    return () => {
+      window.removeEventListener("scroll", revealOnScroll);
+    };
+
+  }, []); // Runs once when the component mounts
+
+
   return (
     <>
      
@@ -47,7 +87,7 @@ export default function Home() {
 
       <div className="row justify-content-center align-self-center">
 
-        <div className="col-md-6 col-lg-6 mtop">
+        <div className="col-md-6 col-lg-6 app-card">
                 <div className="card">
                     <div className="card-content">
                        <Image
@@ -70,7 +110,7 @@ export default function Home() {
                 </div>
         </div>
 
-        <div className="col-md-6 col-lg-6 mtop">
+        <div className="col-md-6 col-lg-6 app-card">
                 <div className="card">
                     <div className="card-content">
                     <Image
@@ -92,7 +132,7 @@ export default function Home() {
                 </div>
         </div>
 
-        <div className="col-md-6 col-lg-6 mtop">
+        <div className="col-md-6 col-lg-6 app-card">
                 <div className="card">
                     <div className="card-content">
                       <Image
@@ -114,7 +154,7 @@ export default function Home() {
                 </div>
         </div>
 
-        <div className="col-md-6 col-lg-6 mtop">
+        <div className="col-md-6 col-lg-6 app-card">
                 <div className="card">
                     <div className="card-content">
                       <Image

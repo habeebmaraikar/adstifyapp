@@ -5,9 +5,9 @@ import axios from 'axios';
 //`https://randomuser.me/api/?results=50`
 
 export async function GET(req) {
-  try {
-    const response = await axios.get(`https://randomuser.me/api/?results=50`);
+  const response = await axios.get(`https://randomuser.me/api/?results=50`);
 
+  try {
     return new Response(JSON.stringify(response.data.results), {
       status: 200,
       headers: {
