@@ -1,6 +1,23 @@
-## Getting Started
+# Getting Started
 
-## 1. Clone the Repository
+
+## 1. Install Required Software
+
+To run the app, the following software needs to be installed:
+
+### a) Node.js and npm
+
+Node.js: A JavaScript runtime that allows you to run JavaScript on the server side.
+npm: Node Package Manager, used to install the app dependencies.
+
+You can install Node.js and npm by downloading the latest LTS version from the official Node.js website, or use a package manager like apt (for Ubuntu) or brew (for macOS).
+
+### b) Git (for cloning the repository)
+
+Git is required to clone the project repository. You can install Git using command line or downloading the latest version.
+
+
+## 2. Clone the Repository
 
 On the target machine, clone the repository from GitHub:
 ```
@@ -13,23 +30,23 @@ git clone https://github.com/habeebmaraikar/adstifyapp.git
  cd adstifyapp
 ```
 
-## 2. Install Dependencies
+## 3. Install Dependencies
 ```
     npm install
 ```
 
-## 3. Run the Development Server
+## 4. Run the Development Server
 
 then, run the development server:
 
-```bash
+```
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 
-## 4. Build and Run in Production Mode 
+## 5. Build and Run in Production Mode 
 For production, you need to build the Next.js app and start it as a production server:
 
 ```
@@ -43,6 +60,7 @@ npm start
 ```
 
 Access the app [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
 
 Upto above steps itself you can see the results. 
 
