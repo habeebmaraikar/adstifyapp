@@ -25,8 +25,7 @@ export default function News() {
 
   const tabs = ['all', 'business', 'food', 'science', 'sports', 'health', 'technology', 'politics', 'travel'];
 
-
-  const timeDifferenceInHours = (dateString) => {
+  const timeDifference = (dateString) => {
     // Convert the provided date string into a Date object
     const givenDate = new Date(dateString);
     
@@ -36,12 +35,26 @@ export default function News() {
     // Calculate the difference in milliseconds
     const diffInMilliseconds = currentDate - givenDate;
     
-    // Convert the difference from milliseconds to hours
+    // Convert the difference into different time units
+    const diffInMinutes = Math.floor(diffInMilliseconds / (1000 * 60));
     const diffInHours = Math.floor(diffInMilliseconds / (1000 * 60 * 60));
-    
-    // Return the result as a string, e.g., "15 hours ago"
-    return `${diffInHours} hours ago`;
-  }
+    const diffInDays = Math.floor(diffInMilliseconds / (1000 * 60 * 60 * 24));
+    const diffInMonths = Math.floor(diffInMilliseconds / (1000 * 60 * 60 * 24 * 30));
+    const diffInYears = Math.floor(diffInMilliseconds / (1000 * 60 * 60 * 24 * 365));
+
+    // Determine how to display the time difference
+    if (diffInMinutes < 60) {
+      return `${diffInMinutes} minute${diffInMinutes === 1 ? '' : 's'} ago`;
+    } else if (diffInHours < 24) {
+      return `${diffInHours} hour${diffInHours === 1 ? '' : 's'} ago`;
+    } else if (diffInDays < 30) {
+      return `${diffInDays} day${diffInDays === 1 ? '' : 's'} ago`;
+    } else if (diffInMonths < 12) {
+      return `${diffInMonths} month${diffInMonths === 1 ? '' : 's'} ago`;
+    } else {
+      return `${diffInYears} year${diffInYears === 1 ? '' : 's'} ago`;
+    }
+}
 
 
     // Function to fetch news based on the selected tab (section)
@@ -186,7 +199,7 @@ export default function News() {
                                     <div className="tooltip">{tooltip.content}</div>
                                   )}
 
-                                <p>{article.source ?  article.source : 'Anonymous News'} - <span className="publishdate">{timeDifferenceInHours(article.published_date)}</span></p>
+                                <p>{article.source ?  article.source : 'Anonymous News'} - <span className="publishdate">{timeDifference(article.published_date)}</span></p>
 
                             </div>
                       </div>

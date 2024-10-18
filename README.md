@@ -122,8 +122,8 @@ Once everything is set up, you can access the app via the server's IP or domain 
 - https://randomuser.me/api/?results=50
 
 
-## Live link 
+## Website Live link 
 
-Access the app [https://adstifyapp.vercel.app/](Website Live Link) with your browser to see the result.
+Access the app [https://adstifyapp.vercel.app/](https://adstifyapp.vercel.app/) with your browser to see the result.
 
 
