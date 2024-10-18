@@ -25,7 +25,7 @@ export default function Weather() {
   const [weather, setWeather] = useState({});
   const [location, setLocation] = useState('Singapore');
   const [error, setError] = useState(false);
-  const debouncedLocation = useDebounce(location, 800); // Delay API call by 1 second
+  const debouncedLocation = useDebounce(location, 600); // Delay API call by 1 second
 
   useEffect(() => {
     const fetchWeather = async (location) => {

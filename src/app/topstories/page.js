@@ -175,7 +175,7 @@ export default function Topstories() {
                                       <div className="tooltip">{tooltip.content}</div>
                                     )}
                                     
-                                  <p>{article.source ?  article.source : article.byline} - <span className="publishdate">{timeDifferenceInHours(article.published_date)}</span></p>
+                                  <p>{article.byline ?  article.byline : ''} - <span className="publishdate">{timeDifferenceInHours(article.published_date)}</span></p>
 
                               </div>
                         </div>

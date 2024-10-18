@@ -114,7 +114,7 @@ Once everything is set up, you can access the app via the server's IP or domain 
 ### Top Stories API
 - https://api.nytimes.com/svc/topstories/v2/${section}.json?api-key=${NYTIMES_API_KEY}
 
-### Weather API
+### Weather API 
 - https://api.weatherstack.com/current?access_key=${WEATHER_API_KEY}&query=${location}
 
 ### Random User API
