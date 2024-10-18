@@ -29,7 +29,7 @@ export default function Home() {
 
       <div className="row justify-content-center align-self-center">
 
-        <div className="col-md-6 col-lg-3 mtop">
+        <div className="col-md-6 col-lg-6 mtop">
                 <div className="card">
                     <div className="card-content">
                        <Image
@@ -52,7 +52,7 @@ export default function Home() {
                 </div>
         </div>
 
-        <div className="col-md-6 col-lg-3 mtop">
+        <div className="col-md-6 col-lg-6 mtop">
                 <div className="card">
                     <div className="card-content">
                     <Image
@@ -74,7 +74,7 @@ export default function Home() {
                 </div>
         </div>
 
-        <div className="col-md-6 col-lg-3 mtop">
+        <div className="col-md-6 col-lg-6 mtop">
                 <div className="card">
                     <div className="card-content">
                       <Image
@@ -97,7 +97,7 @@ export default function Home() {
         </div>
 
 
-        <div className="col-md-6 col-lg-3 mtop">
+        <div className="col-md-6 col-lg-6 mtop">
                 <div className="card">
                     <div className="card-content">
                       <Image
