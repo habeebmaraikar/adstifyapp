@@ -22,7 +22,7 @@ export default function News() {
 
   //arts, automobiles, books/review, business, fashion, food, health, home, insider, magazine, movies, nyregion, obituaries, opinion, politics, realestate, science, sports, sundayreview, technology, theater, t-magazine, travel, upshot, us, world
 
-  const tabs = ['all', 'automobiles', 'business', 'science', 'sports', 'health', 'technology', 'politics', 'travel'];
+  const tabs = ['all', 'business', 'food', 'science', 'sports', 'health', 'technology', 'politics', 'travel'];
 
 
   const timeDifferenceInHours = (dateString) => {
